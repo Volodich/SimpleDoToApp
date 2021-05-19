@@ -1,0 +1,59 @@
+﻿@model TaskSchedulerWebApp.Models.UserTask
+
+@{
+    Layout = "_Layout";
+}
+
+<h3>Удаление задачи</h3>
+
+<h4>Вы действительно хотите удалить выбранную задачу?</h4>
+<div>
+    <h4>@Html.DisplayFor(model => model.Name)</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                <b>Описание задачи</b>
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class="col-sm-2">
+                <b>Состояние выполнения задачи</b>
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TaskState.Name)
+            </dd>
+            <dt class="col-sm-2">
+                <b>Приоритет задачи</b>
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TaskLevel.Name)
+            </dd>
+            <dt class="col-sm-2">
+                <b>Дата выполнения</b>
+            </dt>
+            <dd class="col-sm-10">
+                @Convert.ToDateTime(Model.Date).ToString("dd/MM/yyyy")
+            </dd>
+            <dt class="col-sm-2">
+                <b>Время</b>
+            </dt>
+            <dd class="col-sm-10">
+                @Convert.ToDateTime(Model.Time).ToString("HH:mm:ss")
+            </dd>
+        </dl>
+    
+        <div class="row">
+            <div class="col-4">
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="TaskId"/>
+                    <input type="submit" value="Удалить"/>
+                </form>
+            </div>
+            <div class="col-4">
+                <form asp-action="Index">
+                    <button>К списку задач</button>
+                </form>
+            </div>
+        </div>
+</div>

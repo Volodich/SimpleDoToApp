@@ -1,0 +1,70 @@
+﻿@model IEnumerable<TaskSchedulerWebApp.Models.UserTask>
+
+@{
+    Layout = "_Layout";
+}
+
+<h3>Задачи на выполнение</h3>
+
+<a asp-action="Create">
+    <button>Добавить задачу</button>
+</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <b>Название задачи </b>
+            </th>
+            <th>
+                <b>Описание задачи</b>
+            </th>
+            <th>
+                <b>Приоритет задачи</b>
+            </th>
+            <th>
+                <b>Состояние выполнения</b>
+            </th>
+            <th>
+                <b>Дата выполнения</b>
+            </th>
+            <th>
+                <b>Время </b>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskLevel.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskState.Name)
+            </td>
+            <td>
+                @Convert.ToDateTime(item.Date).ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Convert.ToDateTime(item.Time).ToString("HH:mm:ss")
+            </td>
+            <td>
+                @if (item.TaskState.Name != "Завершена")
+                {
+                    <b><a asp-action="Edit" asp-route-id="@item.TaskId">Изменить</a> | </b>
+                }
+                <b>
+                <a asp-action="Details" asp-route-id="@item.TaskId">Подробнее</a> |
+                <a asp-action="Delete" asp-route-id="@item.TaskId">Удалить</a>
+                </b>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

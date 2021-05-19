@@ -1,0 +1,60 @@
+﻿@model TaskSchedulerWebApp.Models.UserTask
+
+@{
+    Layout = "_Layout";
+}
+
+<h3>Подробнее о задаче</h3>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            <b>Название задачи</b>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            <b>Описание задачи</b>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            <b>Состояние выполнения задачи</b>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TaskState.Name)
+        </dd>
+        <dt class="col-sm-2">
+            <b>Приоритет задачи</b>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TaskLevel.Name)
+        </dd>
+        <dt class="col-sm-2">
+            <b>Дата выполнения</b>
+        </dt>
+        <dd class="col-sm-10">
+            @Convert.ToDateTime(Model.Date).ToString("dd/MM/yyyy")
+        </dd>
+        <dt class="col-sm-2">
+            <b>Время</b>
+        </dt>
+        <dd class="col-sm-10">
+            @Convert.ToDateTime(Model.Time).ToString("HH:mm:ss")
+        </dd>
+    </dl>
+</div>
+<div class="row">
+    <div class="col-3">
+        <a asp-action="Edit" asp-route-id="@Model.TaskId">
+            <button>Изменить</button>
+        </a>
+    </div>
+    <div class="col-3">
+        <a asp-action="Index">
+            <button>Назад к списку задач</button>
+        </a>
+    </div>
+</div>

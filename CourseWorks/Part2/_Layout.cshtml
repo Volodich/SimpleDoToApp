@@ -1,0 +1,46 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    @if (ViewBag.Title is not null)
+    {
+        <title>@ViewBag.Title</title>
+    }
+    else
+    {
+        <title>Приложение</title>
+    }
+    @await Html.PartialAsync("MetatagsPartial")
+    @await Html.PartialAsync("CssPartial")
+</head>
+<body class="right-sidebar is-preload">
+    <div id="page-wrapper">
+         
+        <!-- Header Wrapper -->
+        @await Html.PartialAsync("HeaderPartial")
+
+        <!-- Main Wrapper -->
+        <div id="main-wrapper">
+            <div class="wrapper style2">
+                <div class="inner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-8 col-12-medium">
+                                <div id="content">
+                                    <!-- Content -->
+                                    @RenderBody()
+                                </div>
+                            </div>
+                            @await Html.PartialAsync("SidebarPartial")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Wrapper -->
+        @await Html.PartialAsync("FooterPartial")
+
+    </div>
+    @await Html.PartialAsync("JsPartial") 
+</body>
+</html>
